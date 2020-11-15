@@ -1,0 +1,13 @@
+instruction = Instruction(name='How to send an email', description='Sending an email', steps=3, tools="PC, keyboard, internet,a mouse",cost=0, duration= 10, user_id=user.id)
+db.session.add(instruction)
+db.session.commit()
+
+instruction1 = Instruction(name='How to make noodles', description='This is a quick noodle guide', steps=2, tools="Quick noodles, water", cost=10, duration=5, user_id=user.id)
+db.session.add(instruction1)
+db.session.commit()
+
+user = User.query.filter_by(username='jack').first()
+user.instructions
+
+for instruction in user.instructions:
+    print('{} instruction made by {} can serve {} people.'.format(instruction.name, instruction.user.username, instruction.steps))
